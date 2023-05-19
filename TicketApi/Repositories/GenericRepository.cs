@@ -1,32 +1,42 @@
-﻿using TicketApi.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using TicketApi.Data;
+using TicketApi.Interfaces;
 
 namespace TicketApi.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        private readonly ApplicationDbContext _context;
+        private readonly DbSet<T> _dbSet;
+
+        public GenericRepository(ApplicationDbContext context)
+        {
+            this._context = context;
+            this._dbSet=_context.Set<T>();  
+        }
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+          _dbSet.Add(entity);   
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Remove(entity);
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _dbSet.ToList();
         }
 
         public T GetById(int? id)
         {
-            throw new NotImplementedException();
+           return _dbSet.Find(id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _dbSet.Update(entity);
         }
     }
 }

@@ -4,9 +4,10 @@ using TicketApi.Models;
 
 namespace TicketApi.Repositories
 {
-    public class StadiumRepository:GenericRepository<Stadium>,IStadiumRepository
+    public class TicketRepository:GenericRepository<Ticket>,ITicketRepository
     {
-        public StadiumRepository(ApplicationDbContext context):base(context)
+        public TicketRepository(ApplicationDbContext context):base(context)
+
         {
             
         }

@@ -32,9 +32,9 @@ namespace TicketApi.Models
 
         public int StadiumId { get; set; }
 
-        public Stadium Stadiums { get; set; }
+        public virtual Stadium Stadiums { get; set; }
 
-        public ICollection<Seat> Seats { get; }
+        public virtual ICollection<Seat> Seats { get; }
 
     }
 }

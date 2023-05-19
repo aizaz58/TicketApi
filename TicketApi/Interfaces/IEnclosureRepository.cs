@@ -2,7 +2,7 @@
 
 namespace TicketApi.Interfaces
 {
-    public interface IEnclosureRepository
+    public interface IEnclosureRepository:IGenericRepository<Enclosure>
     {
 
     }
