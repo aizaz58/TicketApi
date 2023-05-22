@@ -10,6 +10,7 @@ namespace TicketApi
         {
             CreateMap<Stadium, GetStadium>();
             CreateMap<AddStadium, Stadium>();
+            CreateMap< UpdateStadium,Stadium>();
         }
     }
 }

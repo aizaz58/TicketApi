@@ -54,36 +54,35 @@ namespace TicketApi.Controllers
             return Ok(_Mapper.Map<GetStadium>(stadium));
         }
 
-       //// PUT: api/Stadiam/5
-       ////  To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-       // [HttpPut("{id}")]
-       // public IActionResult PutStadium(int id, Stadium stadium)
-       // {
-       //     if (id != stadium.Id)
-       //     {
-       //         return BadRequest();
-       //     }
+        //// PUT: api/Stadiam/5
+        ////  To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut]
+        public ActionResult<GetStadium> PutStadium(UpdateStadium updateStadium)
+        {
+           
 
-       //     _context.Entry(stadium).State = EntityState.Modified;
+           Stadium std= _unitOfWork.Stadium.GetById(updateStadium.Id);
+            if (std == null)
+            {
+                return NotFound("no record found");
+            }
+            var stadium = _Mapper.Map<Stadium> (updateStadium);
 
-       //     try
-       //     {
-       //         await _context.SaveChangesAsync();
-       //     }
-       //     catch (DbUpdateConcurrencyException)
-       //     {
-       //         if (!StadiumExists(id))
-       //         {
-       //             return NotFound();
-       //         }
-       //         else
-       //         {
-       //             throw;
-       //         }
-       //     }
+            std.Std_Name = updateStadium.Std_Name;
 
-       //     return NoContent();
-       // }
+            _unitOfWork.Stadium.Update(stadium);
+            try
+            {
+                _unitOfWork.Save();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+            }
+
+            return Ok();
+            
+        }
 
         // POST: api/Stadiam
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
