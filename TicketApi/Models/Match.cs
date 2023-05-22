@@ -15,6 +15,6 @@ namespace TicketApi.Models
         public ICollection<Ticket> Ticket { get; set; } = new List<Ticket>();
 
         public int StadiumId { get; set; }
-        public Stadium Stadiums { get; set; }
+        public virtual Stadium Stadiums { get; set; }
     }
 }

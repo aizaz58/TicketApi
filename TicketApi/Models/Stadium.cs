@@ -8,7 +8,7 @@ namespace TicketApi.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        [MaxLength(50, ErrorMessage = "name can be max 50 char long ."), MinLength(10, ErrorMessage = "name can be  min 10 har short.")]
+        [MaxLength(50, ErrorMessage = "name can be max 50 char long ."), MinLength(10, ErrorMessage = "name can be  min 10 char short.")]
 
         [DisplayName("Stadium Name")]
         public string Std_Name { get; set; }
@@ -16,9 +16,10 @@ namespace TicketApi.Models
         public string Std_CityName { get; set; }
         [DisplayName("Stadium Capacity")]
         public int Std_Capacity { get; set; }
+       
+        public  ICollection<Enclosure>? Enclosures { get; set; }
+        public  ICollection<Match>? Matches { get; set; }
 
-        public ICollection<Enclosure> Enclosures { get; set; }
-        public ICollection<Match> Matches { get; set; }
 
     }
 }
