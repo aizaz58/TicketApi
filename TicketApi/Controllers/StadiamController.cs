@@ -22,6 +22,8 @@ namespace TicketApi.Controllers
 
         private readonly IMapper _Mapper;
 
+        public IQueryable<Stadium> stds { get; private set; }
+
         public StadiamController(IUnitOfWork unitOfWork,IMapper mapper)
         {
             
@@ -33,7 +35,9 @@ namespace TicketApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<GetStadium>> GetStadiums()
         {
-            var stds = _unitOfWork.Stadium.GetAll();
+            string[] navProps = { "Matches", "Enclosures" };
+            stds = _unitOfWork.Stadium.IncludeOther(navProps);
+           
           if (stds== null)
           {
               return NotFound();
